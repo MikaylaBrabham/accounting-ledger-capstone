@@ -19,6 +19,12 @@ public class AccountingLedger {
 
     //add main method to project class
     public static void main(String[] args) {
+        try {
+            //Create a CSV File called transactions using FileWriter
+            //Format input to CSV File to accept single line
+            //Format input to match given examples
 
+
+        }
     }
 }
