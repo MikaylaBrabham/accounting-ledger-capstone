@@ -13,6 +13,7 @@ package com.pluralsight;
 // import buffreader, filereader, scanner
 import java.io.BufferedReader;
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.io.FileWriter;
 
@@ -32,3 +33,26 @@ public class AccountingLedgerApplication {
 }
 
 // Create the home screen
+public static void showHomeScreen( Scanner myScanner){
+    // when appRunning is true run home screen
+    boolean appRunning = true;
+
+    //create while loop to prompt user to pick an option from the menu
+    while (appRunning){
+        //add prompts for the user to choose from
+        System.out.println("Welcome to Mikayla's Bank!\n" +
+                "Please choose an option below!\t");
+        System.out.println("D) Add Deposit");
+        System.out.println("P) Make a Payment");
+        System.out.println("L) Ledger");
+        System.out.println("X) Exit");
+
+        // create variable name that starts switch menu that:
+        // prints customer choice
+        // formats output
+        String customerSelection = myScanner.nextLine()
+
+
+    }
+
+}
