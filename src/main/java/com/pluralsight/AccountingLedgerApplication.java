@@ -77,7 +77,7 @@ public class AccountingLedgerApplication {
         }
     }
 
-    // Create a transaction class that will enter the different variables for the given format
+    // Create a transaction class that will enter the different variables for the ledger
     public class Transactions {
 
         // create variables with different data properties
@@ -97,25 +97,11 @@ public class AccountingLedgerApplication {
         }
 
         // Add getters
-        public String getDate() {
-            return date;
-        }
-
-        public String getTime() {
-            return time;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public String getVendor() {
-            return vendor;
-        }
-
-        public Double getAmount() {
-            return amount;
-        }
+        public String getDate() {return date;}
+        public String getTime() {return time; }
+        public String getDescription() {return description; }
+        public String getVendor() {return vendor; }
+        public Double getAmount() {return amount; }
 
         // create a variable the formats the returned data in the given format
         // date|time|description|vendor|amount
@@ -124,6 +110,11 @@ public class AccountingLedgerApplication {
 
         }
     }
+
+    // Create method to get d) deposit (-) and p) payment (+) amount information
+
+
+
 }
 
 
