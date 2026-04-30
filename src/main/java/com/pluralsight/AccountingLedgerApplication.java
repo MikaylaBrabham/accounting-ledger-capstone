@@ -14,7 +14,6 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.io.FileWriter;
 
@@ -97,11 +96,25 @@ public class AccountingLedgerApplication {
         }
 
         // Add getters
-        public String getDate() {return date;}
-        public String getTime() {return time; }
-        public String getDescription() {return description; }
-        public String getVendor() {return vendor; }
-        public Double getAmount() {return amount; }
+        public String getDate() {
+            return date;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getVendor() {
+            return vendor;
+        }
+
+        public Double getAmount() {
+            return amount;
+        }
 
         // create a variable the formats the returned data in the given format
         // date|time|description|vendor|amount
@@ -112,6 +125,22 @@ public class AccountingLedgerApplication {
     }
 
     // Create method to get d) deposit (-) and p) payment (+) amount information
+    public static Transactions transactionInput(Scanner scanner, boolean paymentInfo) {
+
+        // prompt user for the description and format output
+        System.out.println("Description: ");
+        String description = scanner.nextLine().trim();
+
+        // prompt user for the vendor and format output
+        System.out.println("vendor: ");
+        String vendor = scanner.nextLine().trim();
+
+        //
+
+
+
+    }
+}
 
 
 
