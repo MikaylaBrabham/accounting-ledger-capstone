@@ -81,14 +81,13 @@ public class AccountingLedgerApplication {
     public class Transactions {
 
         // create variables with different data properties
-        // in the given format date|time|description|vendor|amount
         private String date;
         private String time;
         private String description;
         private String vendor;
         private Double amount;
 
-        // gather constructors for variables
+        // gather constructors for created variables
         public Transactions(String date, String time, String description, String vendor, Double amount) {
             this.date = date;
             this.time = time;
@@ -96,15 +95,34 @@ public class AccountingLedgerApplication {
             this.vendor = vendor;
             this.amount = amount;
         }
+
         // Add getters
-        public String getDate() {return date; }
-        public String getTime() {return time; }
-        public String getDescription() {return description; }
-        public String getVendor() {return vendor; }
-        public Double getAmount() {return amount; }
+        public String getDate() {
+            return date;
+        }
 
+        public String getTime() {
+            return time;
+        }
 
+        public String getDescription() {
+            return description;
+        }
 
+        public String getVendor() {
+            return vendor;
+        }
+
+        public Double getAmount() {
+            return amount;
+        }
+
+        // create a variable the formats the returned data in the given format
+        // date|time|description|vendor|amount
+        public String formattedTransaction() {
+            return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+
+        }
     }
 }
 
