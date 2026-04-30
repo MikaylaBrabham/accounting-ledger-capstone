@@ -1,3 +1,4 @@
+package com.pluralsight;
 /***
  * Mikayla Brabham
  * Capstone One (Workbook 1a - 3b)
@@ -8,8 +9,7 @@
  * Citations:
  *
  */
-//Import Scanner
-package com.pluralsight;
+
 // import buffreader, filereader, scanner
 import java.io.BufferedReader;
 import java.io.*;
@@ -30,3 +30,5 @@ public class AccountingLedgerApplication {
 
     }
 }
+
+// Create the home screen
