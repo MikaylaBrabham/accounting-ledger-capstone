@@ -33,12 +33,12 @@ public class AccountingLedgerApplication {
 }
 
 // Create the home screen
-public static void showHomeScreen( Scanner myScanner){
+public static void showHomeScreen( Scanner myScanner) {
     // when appRunning is true run home screen
     boolean appRunning = true;
 
     //create while loop to prompt user to pick an option from the menu
-    while (appRunning){
+    while (appRunning) {
         //add prompts for the user to choose from
         System.out.println("Welcome to Mikayla's Bank!\n" +
                 "Please choose an option below!\t");
@@ -50,9 +50,27 @@ public static void showHomeScreen( Scanner myScanner){
         // create variable name that starts switch menu that:
         // prints customer choice
         // formats output
-        String customerSelection = myScanner.nextLine()
+        String customerSelection = myScanner.nextLine().trim().toUpperCase();
 
+        //create switch from choices outlined above
+        switch (customerSelection) {
+            case "D":
+                System.out.println("You Selected: Add Deposition");
+                break;
+            case "P":
+                System.out.println("You Selected: Make Payment");
+                break;
+            case "L":
+                System.out.println("You Selected: Add Ledger");
+                break;
+            case "x":
+                System.out.println("You Selected: Exit Program");
+                break;
+            default:
+                System.out.println("That Entry is Invalid.");
+        }
 
     }
 
 }
+
