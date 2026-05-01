@@ -200,6 +200,7 @@ public class AccountingLedgerApplication {
             switch (mySelection) {
                 case "A":
                     System.out.println("Currently Displaying All Your Selections");
+                    readTransaction();
                     break;
                 case "D":
                     System.out.println("Currently Displaying All Deposits");
