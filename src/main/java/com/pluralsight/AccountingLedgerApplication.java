@@ -148,9 +148,9 @@ public class AccountingLedgerApplication {
         Double amount = Double.parseDouble(scanner.nextLine().trim());
 
         // add if statements to get amount
-        if (paymentInfo && amount > 0 ){
+        if (paymentInfo && amount > 0) {
             amount = amount * -1;
-    }
+        }
         // add time and date
         String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
         String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss:")).toString();
@@ -158,7 +158,8 @@ public class AccountingLedgerApplication {
         Transactions transactions = new Transactions(date, time, description, vendor, amount);
         return transactions;
     }
-// add all transactions to new transactions file
+
+    // add all transactions to new transactions file
     public static void saveTransaction(Transactions transaction) {
         try {
             // create and add file writer to transactions.csv and buffered
@@ -172,16 +173,17 @@ public class AccountingLedgerApplication {
             // add a statement to let user know transaction completed
             System.out.println("Your Transaction Was Successfully Completed.");
 
-          //Add exception and display
+            //Add exception and display
         } catch (IOException e) {
             System.out.println("Oops, There Was An Error Saving Your Transaction.");
             e.printStackTrace();
         }
 
 
-        }
-     // Add new ledger and new screen
-    public static void saveLedger(Scanner myscanner) {
+    }
+
+    // Add new ledger and new screen
+    public static void showLedgerScreen(Scanner myscanner) {
         boolean ledgerRunning = true;
 
         // add while loop to make menu to give user options
@@ -199,14 +201,13 @@ public class AccountingLedgerApplication {
             // create switch from choices outlined above
             switch (mySelection) {
                 case "A":
-                    System.out.println("Currently Displaying All Your Selections");
-                    readTransaction();
+                    readTransaction("All");
                     break;
                 case "D":
-                    System.out.println("Currently Displaying All Deposits");
+                    readTransaction("Deposit");
                     break;
                 case "P":
-                    System.out.println("Currently Displaying All Payments");
+                    readTransaction("payment");
                     break;
                 case "H":
                     ledgerRunning = false;
@@ -217,38 +218,50 @@ public class AccountingLedgerApplication {
 
         }
     }
+
     // read the transaction file
-    public static void readTransaction(){
-            try {
-                BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
+    public static void readTransaction(String) {
+        try {
+            BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
 
 
-                String readline;
+            String readline;
 
-                // add while statement to read transaction file
-                while (readline = toReader.readLine.notNull()) {
+            // add while statement to read transaction file
+            while ((readline = toReader.readLine()) != null) {
+                //get reader to read data by parsing data by pipe
+                String[] readparts = readline.split("\\|");
+
+                //Add
+                double amount = Double.parseDouble(readparts[4]);
+
+                //add if statement to print the display menu options based on user choice
+                if (String mype.equals("All")) {
                     System.out.println(readline);
+                }else if(type.equals("Deposit")&& amount > 0) {
+                    System.out.println(readline);
+                } else if (type.equals("Payment") && amount < 0) {
+                    System.out.println(readline);
+
                 }
-                toReader.close();
-
-                // set exceptions
-            } catch (IOException e) {
-                System.out.println("Oops, The File Ran Into An Issue Reading The File.");
-                e.printStackTrace();
             }
+            //close scanner
+            toReader.close();
 
-
-
-            }
-            Catch{
-
-            }
+            // set exceptions
+        } catch (IOException e) {
+            System.out.println("Oops, The File Ran Into An Issue Reading The File.");
+            e.printStackTrace();
         }
 
 
     }
+}
 
-    }
+
+
+
+
 
 
 
