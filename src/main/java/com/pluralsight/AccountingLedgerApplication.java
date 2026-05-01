@@ -4,8 +4,6 @@ package com.pluralsight;
  * Capstone One (Workbook 1a - 3b)
  * Accounting Ledger
  ***/
-  package com.pluralsight;
-
   import java.io.BufferedReader;
   import java.io.BufferedWriter;
   import java.io.FileReader;
