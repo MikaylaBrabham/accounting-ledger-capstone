@@ -73,7 +73,7 @@ public class AccountingLedgerApplication {
                     saveTransaction(payment);
                     break;
                 case "L":
-                    System.out.println("You Selected: Add Ledger");
+                    showLedgerScreen(myScanner);
                     break;
                 case "X":
                     appRunning = false;
@@ -213,6 +213,7 @@ public class AccountingLedgerApplication {
                 default:
                     System.out.println("That Entry Is Invalid");
             }
+
 
 
 
