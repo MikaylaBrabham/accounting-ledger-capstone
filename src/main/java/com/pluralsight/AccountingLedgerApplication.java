@@ -1,13 +1,19 @@
 package com.pluralsight;
+
 /***
  * Mikayla Brabham
  * Capstone One (Workbook 1a - 3b)
  * Accounting Ledger
  ***/
+
+
+//import file & buff reader/writer
   import java.io.BufferedReader;
   import java.io.BufferedWriter;
   import java.io.FileReader;
   import java.io.FileWriter;
+
+  //import exceptions
   import java.io.IOException;
   import java.time.LocalDate;
   import java.time.format.DateTimeFormatter;
@@ -16,26 +22,27 @@ package com.pluralsight;
   import java.util.Scanner;
 
   public class AccountingLedgerApplication {
-
+//add main method
       public static void main(String[] args) {
           try (Scanner myScanner = new Scanner(System.in)) {
               System.out.println("***--- Mikayla's Accounting Ledger ---***");
               showHomeScreen(myScanner);
           }
       }
-
+//add home screen
       public static void showHomeScreen(Scanner myScanner) {
           boolean appRunning = true;
 
+          // add user options for the home screen
           while (appRunning) {
               System.out.println("Welcome to Mikayla's Bank!\nPlease choose an option below!\t");
               System.out.println("D) Add Deposit");
               System.out.println("P) Make a Payment");
               System.out.println("L) Ledger");
               System.out.println("X) Exit");
-
+                // format user scanner to their selection
               String customerSelection = myScanner.nextLine().trim().toUpperCase();
-
+                // create switch choice options from user selection
               switch (customerSelection) {
                   case "D":
                       Transactions deposit = transactionData(myScanner, false);
@@ -56,7 +63,7 @@ package com.pluralsight;
               }
           }
       }
-
+// add transaction data
       public static Transactions transactionData(Scanner scanner, boolean paymentInfo) {
           System.out.print("Description: ");
           String description = scanner.nextLine().trim();
@@ -68,20 +75,20 @@ package com.pluralsight;
           Double amount = 0.0;
           try {
               amount = Double.parseDouble(scanner.nextLine().trim());
-          } catch (NumberFormatException nfe) {
-              System.out.println("Invalid amount entered. Using 0.0");
+          } catch (NumberFormatException e) {
+              System.out.println("Invalid amount entered.");
           }
 
           if (paymentInfo && amount > 0) {
               amount = -amount;
           }
-
+            //format date and time
           String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
           String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
           return new Transactions(date, time, description, vendor, amount);
       }
-
+//add transaction file
       public static void saveTransaction(Transactions transaction) {
           try (BufferedWriter toWriter = new BufferedWriter(new FileWriter("transactions.csv", true))) {
               toWriter.write(transaction.formattedTransaction());
@@ -92,10 +99,10 @@ package com.pluralsight;
               e.printStackTrace();
           }
       }
-
+//add ledger screen
       public static void showLedgerScreen(Scanner myscanner) {
           boolean ledgerRunning = true;
-
+//add user options
           while (ledgerRunning) {
               System.out.println("Here's What you've done so far\nPlease choose your view");
               System.out.println("A) All Entries");
@@ -105,7 +112,7 @@ package com.pluralsight;
               System.out.println("H) Home");
 
               String mySelection = myscanner.nextLine().trim().toUpperCase();
-
+            // add switch to tell users what to do with info
               switch (mySelection) {
                   case "A":
                       readTransaction("ALL");
