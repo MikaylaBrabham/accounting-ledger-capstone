@@ -267,6 +267,7 @@ public class AccountingLedgerApplication {
             System.out.println("Oops, The File Ran Into An Issue Reading The File.");
             e.printStackTrace();
         }
+
     }
 
 
@@ -286,27 +287,29 @@ public class AccountingLedgerApplication {
             System.out.println("0) Back");
 
             //print users choice from menu
-            String mySelection = myScanner.nextLine().trim();
+            String mySelection = myScanner.nextLine().trim().toUpperCase();
 
             // create switch to exapnd on options
-            case "1":
-                byDateReport("MONTHTODATE");
-                break;
-            case "2":
-                byDateReport("PREVIOUSMONTH");
-                break;
-            case "3":
-                byDateReport("YEARTODATE");
-                break;
-            case "4":
-                byDateReport("PREVIOUSYEAR");
-            case "5":
-                byVendorReport(myScanner);
-                break;
-            case "0":
-                reportsRunning = false;
-            default:
-                System.out.println("That Entry Is Invalid");
+            switch (mySelection) {
+                case "1":
+                    byDateReport("MONTHTODATE");
+                    break;
+                case "2":
+                    byDateReport("PREVIOUSMONTH");
+                    break;
+                case "3":
+                    byDateReport("YEARTODATE");
+                    break;
+                case "4":
+                    byDateReport("PREVIOUSYEAR");
+                case "5":
+                    byVendorReport(myScanner);
+                    break;
+                case "0":
+                    reportsRunning = false;
+                default:
+                    System.out.println("That Entry Is Invalid");
+            }
         }
         //add searchbyvendor report
         public static void byVendorReport (Scanner myScanner){
