@@ -65,12 +65,12 @@ public class AccountingLedgerApplication {
             //create switch from choices outlined above
             switch (customerSelection) {
                 case "D":
-                    System.out.println("You Selected: Add Deposition\n" +
-                            "Please Enter your Deposit Information: ");
+                    Transactions deposit = transactionData(myScanner, false);
+                    saveTransaction(deposit);
                     break;
                 case "P":
-                    System.out.println("You Selected: Make Payment\n" +
-                            "Please Enter your Debit Information: ");
+                    Transactions payment = transactionData(myScanner, true);
+                    saveTransaction(payment);
                     break;
                 case "L":
                     System.out.println("You Selected: Add Ledger");
@@ -85,7 +85,7 @@ public class AccountingLedgerApplication {
     }
 
     // Create a transaction class that will enter the different variables for the ledger
-    public class Transactions {
+    public static class Transactions {
 
         // create variables with different data properties
         private String date;
@@ -133,7 +133,7 @@ public class AccountingLedgerApplication {
     }
 
     // Create method to get d) deposit (-) and p) payment (+) amount information
-    public Transactions transactionData(Scanner scanner, boolean paymentInfo) {
+    public static Transactions transactionData(Scanner scanner, boolean paymentInfo) {
 
         // prompt user for the description and format output
         System.out.print("Description: ");
@@ -155,9 +155,9 @@ public class AccountingLedgerApplication {
         String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
         String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss:")).toString();
         // print all transactions
-        return new Transactions(date,time, description, vendor, amount);
-
-}
+        Transactions transactions = new Transactions(date, time, description, vendor, amount);
+        return transactions;
+    }
 // add all transactions to new transactions file
     public static void saveTransaction(Transactions transaction) {
         try {
