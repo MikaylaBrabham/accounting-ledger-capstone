@@ -104,7 +104,7 @@ package com.pluralsight;
           boolean ledgerRunning = true;
 //add user options
           while (ledgerRunning) {
-              System.out.println("Here's What you've done so far\nPlease choose your view");
+              System.out.println("Please choose your view\n");
               System.out.println("A) All Entries");
               System.out.println("D) Deposits Only");
               System.out.println("P) Payments Only");
@@ -210,10 +210,10 @@ package com.pluralsight;
               }
           }
       }
-
+// start report menu
       public static void byDateReport(String reportTyping) {
           LocalDate todayNow = LocalDate.now();
-
+    //enter file /buff reader
           try (BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"))) {
               String dateTimeLine;
 
@@ -229,7 +229,7 @@ package com.pluralsight;
                   } catch (Exception ex) {
                       continue;
                   }
-
+                //enter formatting for the report selection
                   if (reportTyping.equals("MONTHTODATE")
                           && transactionDates.getMonth() == todayNow.getMonth()
                           && transactionDates.getYear() == todayNow.getYear()) {
@@ -251,11 +251,11 @@ package com.pluralsight;
               e.printStackTrace();
           }
       }
-
+    // get vendor report
       public static void byVendorReport(Scanner myScanner) {
           System.out.print("Enter The Vendors Name: ");
           String byVendor = myScanner.nextLine().trim().toLowerCase();
-
+    //get reader and buffer reader
           try (BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"))) {
               String readline;
 
@@ -273,14 +273,14 @@ package com.pluralsight;
               e.printStackTrace();
           }
       }
-
+//enter transactions necessary variables
       public static class Transactions {
           private final String date;
           private final String time;
           private final String description;
           private final String vendor;
           private final Double amount;
-
+//get constructors
           public Transactions(String date, String time, String description, String vendor, Double amount) {
               this.date = date;
               this.time = time;
@@ -288,13 +288,13 @@ package com.pluralsight;
               this.vendor = vendor;
               this.amount = amount;
           }
-
+//add getters
           public String getDate() { return date; }
           public String getTime() { return time; }
           public String getDescription() { return description; }
           public String getVendor() { return vendor; }
           public Double getAmount() { return amount; }
-
+//format and add all parsed data together
           public String formattedTransaction() {
               return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
           }
