@@ -14,6 +14,7 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 //import file management
@@ -239,7 +240,7 @@ public class AccountingLedgerApplication {
                 //add if statement to print the display menu options based on user choice
                 if (write.equals("ALL")) {
                     System.out.println(readline);
-                }else if(write.equals("DEPOSIT")&& amount > 0) {
+                } else if (write.equals("DEPOSIT") && amount > 0) {
                     System.out.println(readline);
                 } else if (write.equals("PAYMENT") && amount < 0) {
                     System.out.println(readline);
@@ -257,46 +258,47 @@ public class AccountingLedgerApplication {
 
 
     }
+
     // add report screen
-    public static void ShowReportScreen(Scanner myScanner){
+    public static void ShowReportScreen(Scanner myScanner) {
         boolean reportsRunning = true;
 
         // create while loop to create menu report options for user to choose
-        while (reportsRunning){
-        System.out.println("Reports Screen\n" +
-                "Please make your selection\t");
-        System.out.println("1) Month To Date");
-        System.out.println("2) Previous Month");
-        System.out.println("3) Year To Date");
-        System.out.println("4) Previous Year");
-        System.out.println("5) Search by Vendor");
-        System.out.println("0) Back");
+        while (reportsRunning) {
+            System.out.println("Reports Screen\n" +
+                    "Please make your selection\t");
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search by Vendor");
+            System.out.println("0) Back");
 
-        //print users choice from menu
-        String mySelection = myScanner.nextLine().trim();
+            //print users choice from menu
+            String mySelection = myScanner.nextLine().trim();
 
-        // create switch to exapnd on options
+            // create switch to exapnd on options
             case "1":
-                readTransaction("ALL");
+                byDateReport("MONTHTODATE");
                 break;
             case "2":
-                readTransaction("DEPOSIT");
+                byDateReport("PREVIOUSMONTH");
                 break;
             case "3":
-                readTransaction("PAYMENT");
+                byDateReport("YEARTODATE");
                 break;
             case "4":
-                readReport
+                byDateReport("PREVIOUSYEAR");
             case "5":
                 byVendorReport(myScanner);
                 break;
             case "0":
-                reportsRunning;
+                reportsRunning = false;
             default:
                 System.out.println("That Entry Is Invalid");
         }
         //add searchbyvendor report
-        public static void byVendorReport(Scanner myScanner) {
+        public static void byVendorReport (Scanner myScanner){
             //prompt userf or vendor
             System.out.println("Enter The Vendors Name: ");
             String byVendor = myScanner.nextLine().trim().toLowerCase();
@@ -327,14 +329,37 @@ public class AccountingLedgerApplication {
                 e.printStackTrace();
             }
         }
+    }
+
+    //add date report method
+    public static void byDateReport(String reportTyping) {
+            //create variable for now
+            LocalDate todayNow = LocalDate.now();
+            //create try to read file and assign variables to the correct date and format
+
+        try {
+                BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
+
+            String dateTimeLine;
+
+            while ((dateTimeLine = toReader.readLine()) != null) {
+                String [] readParts = dateTimeLine.split("\\|");
+
+                LocalDate transactionDates = LocalDate.parse(readParts[0]);
+
+                //create if statement to assign parsed varaiables to datereport
+                if (reportTyping.contentEquals("MTD" && transactionDates.getMonth() == todayNow.getMonth()
+                && todayNow.getYear() == transactionDates.getYear(){
+                    System.out.println(dateTimeLine);
 
 
 
-
+            }
+            }
         }
-
     }
 }
+
 
 
 
