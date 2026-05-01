@@ -16,6 +16,9 @@ import java.io.BufferedReader;
 import java.io.*;
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.time.
+
+import static java.time.LocalDateTime.now;
 
 public class AccountingLedgerApplication {
     //Add main method
@@ -125,21 +128,30 @@ public class AccountingLedgerApplication {
     }
 
     // Create method to get d) deposit (-) and p) payment (+) amount information
-    public static Transactions transactionInput(Scanner scanner, boolean paymentInfo) {
+    public Transactions transactionData(Scanner scanner, boolean paymentInfo) {
 
         // prompt user for the description and format output
-        System.out.println("Description: ");
+        System.out.print("Description: ");
         String description = scanner.nextLine().trim();
 
         // prompt user for the vendor and format output
-        System.out.println("vendor: ");
+        System.out.print("Vendor: ");
         String vendor = scanner.nextLine().trim();
 
-        //
+        //prompt user for the amount and format output
+        System.out.print("Amount: ");
+        Double amount = Double.parseDouble(scanner.nextLine().trim());
 
-
-
+        // add if statements to get amount
+        if (paymentInfo && amount > 0 ){
+            amount = amount * -1;
     }
+        // add time and date
+        String date = java.time.LocalDate.now().format("yyyy-MM-DD").toString();
+        String time = java.time.LocalTime.now().withNano(0).toString();
+
+        return new Transactions(date,time, description, vendor, amount);
+
 }
 
 
