@@ -181,8 +181,8 @@ public class AccountingLedgerApplication {
 
         }
      // Add new ledger and new screen
-    public static void saveLedger(Scanner myscanner){
-        boolean ledgerRunning= true;
+    public static void saveLedger(Scanner myscanner) {
+        boolean ledgerRunning = true;
 
         // add while loop to make menu to give user options
         while (ledgerRunning) {
@@ -214,9 +214,28 @@ public class AccountingLedgerApplication {
                     System.out.println("That Entry Is Invalid");
             }
 
+        }
+    }
+    // read the transaction file
+    public static void readTransaction(){
+            try {
+                BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
+
+
+                String readline;
+
+                // add while statement to read transaction file
+                while (readline = toReader.readLine.notNull()) {
+                    System.out.println(readline);
+                }
+                toReader.close();
 
 
 
+            }
+            Catch{
+
+            }
         }
 
 
