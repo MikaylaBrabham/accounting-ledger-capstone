@@ -230,6 +230,12 @@ public class AccountingLedgerApplication {
                 }
                 toReader.close();
 
+                // set exceptions
+            } catch (IOException e) {
+                System.out.println("Oops, The File Ran Into An Issue Reading The File.");
+                e.printStackTrace();
+            }
+
 
 
             }
