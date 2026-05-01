@@ -180,6 +180,47 @@ public class AccountingLedgerApplication {
 
 
         }
+     // Add new ledger and new screen
+    public static void saveLedger(Scanner myscanner){
+        boolean ledgerRunning= true;
+
+        // add while loop to make menu to give user options
+        while (ledgerRunning) {
+            System.out.println("Here's What you've done so far\n" +
+                    "Please choose your view");
+            System.out.println("A) All Entries");
+            System.out.println("D) Deposits Only");
+            System.out.println("P) Payments Only");
+            System.out.println("H) Home");
+
+            // add variable name that starts ledger switch menu
+            String mySelection = myscanner.nextLine().trim().toUpperCase();
+
+            // create switch from choices outlined above
+            switch (mySelection) {
+                case "A":
+                    System.out.println("Currently Displaying All Your Selections");
+                    break;
+                case "D":
+                    System.out.println("Currently Displaying All Deposits");
+                    break;
+                case "P":
+                    System.out.println("Currently Displaying All Payments");
+                    break;
+                case "H":
+                    ledgerRunning = false;
+                    break;
+                default:
+                    System.out.println("That Entry Is Invalid");
+            }
+
+
+
+        }
+
+
+    }
+
     }
 
 
