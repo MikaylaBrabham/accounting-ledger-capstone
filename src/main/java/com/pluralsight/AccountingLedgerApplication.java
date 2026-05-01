@@ -201,13 +201,13 @@ public class AccountingLedgerApplication {
             // create switch from choices outlined above
             switch (mySelection) {
                 case "A":
-                    readTransaction("All");
+                    readTransaction("ALL");
                     break;
                 case "D":
-                    readTransaction("Deposit");
+                    readTransaction("DEPOSIT");
                     break;
                 case "P":
-                    readTransaction("payment");
+                    readTransaction("PAYMENT");
                     break;
                 case "H":
                     ledgerRunning = false;
@@ -220,7 +220,7 @@ public class AccountingLedgerApplication {
     }
 
     // read the transaction file
-    public static void readTransaction(String) {
+    public static void readTransaction(String write) {
         try {
             BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
 
@@ -231,16 +231,14 @@ public class AccountingLedgerApplication {
             while ((readline = toReader.readLine()) != null) {
                 //get reader to read data by parsing data by pipe
                 String[] readparts = readline.split("\\|");
-
-                //Add
                 double amount = Double.parseDouble(readparts[4]);
 
                 //add if statement to print the display menu options based on user choice
-                if (String mype.equals("All")) {
+                if (write.equals("ALL")) {
                     System.out.println(readline);
-                }else if(type.equals("Deposit")&& amount > 0) {
+                }else if(write.equals("DEPOSIT")&& amount > 0) {
                     System.out.println(readline);
-                } else if (type.equals("Payment") && amount < 0) {
+                } else if (write.equals("PAYMENT") && amount < 0) {
                     System.out.println(readline);
 
                 }
