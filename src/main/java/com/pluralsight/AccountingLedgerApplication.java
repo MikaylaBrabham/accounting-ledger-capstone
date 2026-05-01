@@ -14,9 +14,9 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.io.FileWriter;
-import java.time.
 
 import static java.time.LocalDateTime.now;
 
@@ -147,8 +147,8 @@ public class AccountingLedgerApplication {
             amount = amount * -1;
     }
         // add time and date
-        String date = java.time.LocalDate.now().format("yyyy-MM-DD").toString();
-        String time = java.time.LocalTime.now().withNano(0).toString();
+        String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+        String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss:")).toString();
 
         return new Transactions(date,time, description, vendor, amount);
 
