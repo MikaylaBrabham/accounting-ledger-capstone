@@ -193,6 +193,7 @@ public class AccountingLedgerApplication {
             System.out.println("A) All Entries");
             System.out.println("D) Deposits Only");
             System.out.println("P) Payments Only");
+            System.out.println("R) Reports");
             System.out.println("H) Home");
 
             // add variable name that starts ledger switch menu
@@ -209,6 +210,8 @@ public class AccountingLedgerApplication {
                 case "P":
                     readTransaction("PAYMENT");
                     break;
+                case "R":
+                    readReport
                 case "H":
                     ledgerRunning = false;
                     break;
@@ -252,6 +255,56 @@ public class AccountingLedgerApplication {
             e.printStackTrace();
         }
 
+
+    }
+    // add report screen
+    public static void ShowReportScreen(Scanner myScanner){
+        boolean reportsRunning = true;
+
+        // create while loop to create menu report options for user to choose
+        while (reportsRunning){
+        System.out.println("Reports Screen\n" +
+                "Please make your selection\t");
+        System.out.println("1) Month To Date");
+        System.out.println("2) Previous Month");
+        System.out.println("3) Year To Date");
+        System.out.println("4) Previous Year");
+        System.out.println("5) Search by Vendor");
+        System.out.println("0) Back");
+
+        //print users choice from menu
+        String mySelection = myScanner.nextLine().trim();
+
+        // create switch to exapnd on options
+            case "1":
+                readTransaction("ALL");
+                break;
+            case "2":
+                readTransaction("DEPOSIT");
+                break;
+            case "3":
+                readTransaction("PAYMENT");
+                break;
+            case "4":
+                readReport
+            case "5":
+                byVendorReport(myScanner);
+                break;
+            case "0":
+                reportsRunning;
+            default:
+                System.out.println("That Entry Is Invalid");
+        }
+        //add searchbyvendor report
+        public static void byVendorReport(Scanner myScanner) {
+            //prompt userf or vendor
+            System.out.println("Enter The Vendors Name: ");
+            String byVendor = myScanner.nextLine().trim().toLowerCase();
+
+            //enter try statement  to read and pass to transactionfile
+
+
+        }
 
     }
 }
