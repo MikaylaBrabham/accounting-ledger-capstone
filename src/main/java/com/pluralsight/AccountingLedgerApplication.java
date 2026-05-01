@@ -11,7 +11,6 @@ package com.pluralsight;
  */
 
 // import buffreader, filereader, scanner
-
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
@@ -23,6 +22,10 @@ import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
+
+//import array management
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 
@@ -212,7 +215,8 @@ public class AccountingLedgerApplication {
                     readTransaction("PAYMENT");
                     break;
                 case "R":
-                    readReport
+                    readReportScreen(myscanner);
+                    break;
                 case "H":
                     ledgerRunning = false;
                     break;
@@ -228,12 +232,21 @@ public class AccountingLedgerApplication {
         try {
             BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
 
-
+            //create array list
+            ArrayList<String> transactions = new ArrayList<>();
             String readline;
 
             // add while statement to read transaction file
             while ((readline = toReader.readLine()) != null) {
-                //get reader to read data by parsing data by pipe
+                transactions.add(readline);
+            }
+            //close scanner
+            toReader.close();
+            //format so  transactions show newest to oldest
+            Collections.reverse(transactions);
+
+            //get reader to read data by parsing data by pipe
+            for (String readLine : transactions) {
                 String[] readParts = readline.split("\\|");
                 double amount = Double.parseDouble(readParts[4]);
 
@@ -247,20 +260,18 @@ public class AccountingLedgerApplication {
 
                 }
             }
-            //close scanner
-            toReader.close();
+
 
             // set exceptions
         } catch (IOException e) {
             System.out.println("Oops, The File Ran Into An Issue Reading The File.");
             e.printStackTrace();
         }
-
-
     }
 
+
     // add report screen
-    public static void ShowReportScreen(Scanner myScanner) {
+    public static void readReportScreeneadReportScreen(Scanner myScanner) {
         boolean reportsRunning = true;
 
         // create while loop to create menu report options for user to choose
@@ -348,13 +359,22 @@ public class AccountingLedgerApplication {
                 LocalDate transactionDates = LocalDate.parse(readParts[0]);
 
                 //create if statement to assign parsed varaiables to datereport
-                if (reportTyping.contentEquals("MTD" && transactionDates.getMonth() == todayNow.getMonth()
-                && todayNow.getYear() == transactionDates.getYear(){
+                if (reportTyping.contentEquals("MONTHTODATE" && transactionDates.getMonth() == todayNow.getMonth()
+                    &&   transactionDates.getYear() == todayNow.getYear()){
                     System.out.println(dateTimeLine);
 
+                }
+                else if(reportTyping.contentEquals("PERMONTH" && transactionDates.getMonth().() == todayNow.minusMonths(1).getMonth()
+                        && todayNow.getYear() == transactionDates.getYear(){
+                    System.out.println(dateTimeLine);
+
+                }
 
 
-            }
+
+
+
+                    }
             }
         }
     }
