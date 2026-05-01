@@ -12,13 +12,18 @@ package com.pluralsight;
 
 // import buffreader, filereader, scanner
 
-import java.io.BufferedReader;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.io.FileWriter;
 
-import static java.time.LocalDateTime.now;
+//import file management
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+
 
 public class AccountingLedgerApplication {
     //Add main method
@@ -149,14 +154,36 @@ public class AccountingLedgerApplication {
         // add time and date
         String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
         String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss:")).toString();
-
+        // print all transactions
         return new Transactions(date,time, description, vendor, amount);
 
 }
+// add all transactions to new transactions file
+    public static void saveTransaction(Transactions transaction) {
+        try {
+            // create and add file writer to transactions.csv and buffered
+            BufferedWriter toWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+
+            // get transaction to convert to csv file
+            toWriter.write(transaction.formattedTransaction());
+            toWriter.newLine();
+            toWriter.close();
+
+            // add a statement to let user know transaction completed
+            System.out.println("Your Transaction Was Successfully Completed.");
+
+          //Add exception and display
+        } catch (IOException e) {
+            System.out.println("Oops, There Was An Error Saving Your Transaction.");
+            e.printStackTrace();
+        }
+
+
+        }
+    }
 
 
 
-}
 
 
 
