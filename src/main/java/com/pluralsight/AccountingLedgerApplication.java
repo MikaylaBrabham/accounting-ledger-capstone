@@ -233,8 +233,8 @@ public class AccountingLedgerApplication {
             // add while statement to read transaction file
             while ((readline = toReader.readLine()) != null) {
                 //get reader to read data by parsing data by pipe
-                String[] readparts = readline.split("\\|");
-                double amount = Double.parseDouble(readparts[4]);
+                String[] readParts = readline.split("\\|");
+                double amount = Double.parseDouble(readParts[4]);
 
                 //add if statement to print the display menu options based on user choice
                 if (write.equals("ALL")) {
@@ -302,6 +302,33 @@ public class AccountingLedgerApplication {
             String byVendor = myScanner.nextLine().trim().toLowerCase();
 
             //enter try statement  to read and pass to transactionfile
+            try {
+                BufferedReader toReader = new BufferedReader(new FileReader("transactions.csv"));
+
+                String readline;
+
+                // add while statement to read transaction file
+                while ((readline = toReader.readLine()) != null) {
+                    //get reader to read data by parsing data by pipe
+                    String[] readparts = readline.split("\\|");
+                    String vendor = readparts[3].toLowerCase();
+
+                    //add if statement to print the display menu options based on user choice
+                    if (vendor.contains(byVendor)) {
+                        System.out.println(readline);
+                    }
+                }
+                //close reader
+                toReader.close();
+            }
+            //add catch exception
+            catch (IOException e) {
+                System.out.println("Oops, The File Ran Into An Issue Searching By The Vendor.");
+                e.printStackTrace();
+            }
+        }
+
+
 
 
         }
